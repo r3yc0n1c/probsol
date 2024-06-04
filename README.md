@@ -2,9 +2,17 @@
 
 > A quirky way to solve coding problems
 
+## Topics
+
+### 1. STL
+1. Pair
+2. Vector
+3. 
+
 ## DSA
 - [C++ STL by Utkarsh Gupta](https://www.youtube.com/watch?v=PZogbfU4X5E)
 - [Heaps in C++ | CodeHelp, Love Babbar](https://www.youtube.com/watch?v=NKJnHewiGdc)
+- [Complete C++ STL in 1 Video | Striver](https://youtu.be/RRVYpIET_RU?si=j_OVtFkJ9NYWyiP6)
 
 ## References
 
@@ -21,7 +29,13 @@
 
 ## IDE Setup
 
+### Windows
+
 - Package Manager for Windows - [Chocolatey](https://chocolatey.org/)
 - Editor - [Neovim](https://neovim.io/)
 - Neovim setup - [LazyVim ](https://www.lazyvim.org/)
   - Hotfix for windows x64 - Unnstall previous versions of MingW and Install MinGW 64bit with command - `> choco install mingw`
+
+### Linux
+- `sudo apt install neovim`
+- [LazyVim ](https://www.lazyvim.org/)
