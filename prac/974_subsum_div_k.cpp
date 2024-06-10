@@ -18,7 +18,7 @@ public:
         
         for(int n: nums){
             sum += n;
-            r = (n < 0) ? (sum % k + k)%k : (sum%k);
+            r = (sum % k + k) % k;
             
             if(u[r]) subArrCount += u[r];
 
