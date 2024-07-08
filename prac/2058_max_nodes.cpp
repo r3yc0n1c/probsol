@@ -22,23 +22,49 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// TODO
+
 class Solution
 {
 public:
     vector<int> nodesBetweenCriticalPoints(ListNode *head)
     {
-        int minD = INT_MAX, maxD = INT_MIN;
-        return {0};
+        int i = 1, minIdx = INT_MIN, minDiff = INT_MAX,  = 1;
+
+        ListNode* prev = head;
+        ListNode* curr = head->next;
+
+        if(!prev || !curr || !curr->next){
+            return {-1, -1};
+        }
+
+        while(curr->next != NULL){
+            if((curr->val > prev->val && curr->val > curr->next->val) || (curr->val < prev->val && curr->val < curr->next->val)){
+                if(maxIdx != 0){
+                    minDiff = min(i - maxIdx, minDiff);
+                }
+                minIdx = min(minIdx, i);
+                maxIdx = i;
+            }
+            i++;
+            prev = curr;
+            curr = curr->next;
+        }
+
+        return {minDiff, maxIdx - minIdx};
     }
 };
 
 ListNode* makeList(vector<int>& arr){
-    ListNode *head;
+    ListNode *head = new ListNode(arr[0]);
+    arr.erase(arr.begin());
+
+    ListNode *curr = head;
 
     for(int i: arr){
-        head = new ListNode(i);
-        head->val = i;
-        head = head->next;
+        // cout << curr->val << " ";
+        curr->next = new ListNode(i);
+        curr = curr->next;
     }
 
     return head;
@@ -46,11 +72,10 @@ ListNode* makeList(vector<int>& arr){
 
 void printList(ListNode* head){
     ListNode *t = head;
-    cout << t->val;
-    // while(t->next != NULL){
-    //     cout <<  t->val << " ";
-    //     t = t->next;
-    // }cout << endl;
+    while(t != NULL){
+        cout <<  t->val << " ";
+        t = t->next;
+    }cout << endl;
 }
 
 int main()
@@ -60,6 +85,11 @@ int main()
     printList(r);
 
     Solution s;
-    // s.nodesBetweenCriticalPoints(r);
+    
+    vector<int> x = s.nodesBetweenCriticalPoints(r);
+
+    cout << x[0] << " " << x[1];
+
+    
     return 0;
 }
