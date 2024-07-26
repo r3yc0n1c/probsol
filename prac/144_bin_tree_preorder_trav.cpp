@@ -1,18 +1,11 @@
 /*
 OJ: https://leetcode.com/problems/binary-tree-preorder-traversal/description/
-Time: 
-Space: 
+Time: O(n)
+Space: O(h)
 */
 #include <iostream>
-#include <algorithm>
 #include <vector>
-#include <list>
-#include <deque>
 #include <stack>
-#include <queue>
-#include <set>
-#include <unordered_set>
-#include <map>
 using namespace std;
 
 /**
@@ -29,7 +22,7 @@ struct TreeNode {
 
 class Solution {
 public:
-    vector<int> preorderTraversal(TreeNode* root) {
+    vector<int> preorderTraversalIterative(TreeNode* root) {
         if(!root){
             return {};
         }
@@ -53,6 +46,21 @@ public:
 
         return v;
     }
+
+    vector<int> preorderTraversalRecursive(TreeNode* root) {
+        vector<int> v;
+        preorder(root, v);
+        return v;
+    }
+
+private:
+    void preorder(TreeNode* root, vector<int>& v){
+        if(!root) return;
+
+        v.push_back(root->val);
+        preorder(root->left, v);
+        preorder(root->right, v);
+    }
 };
 
 int main() {
@@ -66,7 +74,13 @@ int main() {
     
 
     Solution s;
-    for(int x: s.preorderTraversal(root))
+    for(int x: s.preorderTraversalIterative(root))
         cout << x << " ";
+    cout << endl;
+    
+    for(int x: s.preorderTraversalRecursive(root))
+        cout << x << " ";
+    cout << endl;
+    
     return 0;
 }
