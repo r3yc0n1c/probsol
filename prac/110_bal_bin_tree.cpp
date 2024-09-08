@@ -29,12 +29,21 @@ struct TreeNode {
 
 class Solution {
 public:
-    bool isBal;
+    bool isBal = true;
     bool isBalanced(TreeNode* root) {
-        if(!root) return false;
-        if(!isBal) return false;
+        getHeight(root);
+        return isBal;
+    }
+    
+    bool getHeight(TreeNode* root) {
+        if(!root) return 0;
+        if(!isBal) return 0;
 
-        int lst =
+        int lh = isBalanced(root->left);
+        int rh = isBalanced(root->right);
+
+        if(abs(lh-rh) > 1) isBal = false;
+        return max(lh, rh)+1;
     }
 };
 
@@ -46,6 +55,6 @@ int main() {
     r->right->right = new TreeNode(7);
 
     Solution s;
-    cout << s.maxDepth(r) << endl;
+    cout << s.isBalanced(r) << endl;
     return 0;
 }
