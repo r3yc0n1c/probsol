@@ -1,1 +1,0 @@
-{"name":"Local: 2570_merge_arr_sum","url":"d:\\probsol\\prac\\2570_merge_arr_sum.cpp","tests":[{"id":1740925381529,"input":"nums1 = [[1,2],[2,3],[4,5]], nums2 = [[1,4],[3,2],[4,1]]","output":"[[1,6],[2,3],[3,2],[4,6]]"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\probsol\\prac\\2570_merge_arr_sum.cpp","group":"local","local":true}
