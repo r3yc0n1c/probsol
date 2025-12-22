@@ -11,3 +11,4 @@ for /r "%pathToSearch%" %%F in (*.exe) do (
 )
 
 echo Cleanup complete!
+pause

@@ -39,3 +39,5 @@
 ### Linux
 - `sudo apt install neovim`
 - [LazyVim ](https://www.lazyvim.org/)
+
+## Snippets
