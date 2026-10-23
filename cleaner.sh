@@ -1,3 +1,3 @@
 #!/bin/bash
 
-find /home/rey/Documents/probsol -type f -executable -not -path '*/.git/*' -not -name "*.sh" -delete
+find . -type f -not -path '*/.git/*' \( -name "*.exe" -o -name "a.out" -o \( ! -name "*.*" -executable ! -name "LICENSE" ! -name "README" \) \) -delete
