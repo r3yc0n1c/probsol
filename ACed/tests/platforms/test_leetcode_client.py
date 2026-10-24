@@ -5,7 +5,10 @@ from pathlib import Path
 from unittest.mock import Mock, patch
 from urllib.error import HTTPError, URLError
 
-from aced.platforms.leetcode.query_template import PROBLEMSET_QUESTION_LIST, QUESTION_CONTENT_WITH_EDITOR_DATA
+from aced.platforms.leetcode.query_template import (
+    PROBLEMSET_QUESTION_LIST,
+    QUESTION_CONTENT_WITH_EDITOR_DATA,
+)
 import pytest
 
 from aced.platforms.leetcode.client import (
@@ -46,26 +49,6 @@ def test_custom_endpoint_and_timeout(tmp_path: Path) -> None:
 
     assert client.endpoint == "https://example.com/graphql"
     assert client.timeout == 5.0
-
-
-def test_default_query_dir_from_environment(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    monkeypatch.setenv("ACED_LEETCODE_QUERIES", str(tmp_path))
-
-    assert default_query_dir() == tmp_path.resolve()
-
-
-def test_default_query_dir_invalid_environment(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    monkeypatch.setenv(
-        "ACED_LEETCODE_QUERIES",
-        str(tmp_path / "missing"),
-    )
-
-    with pytest.raises(LeetCodeError, match="does not exist"):
-        default_query_dir()
 
 
 # ── GraphQL execution ───────────────────────────────────────────

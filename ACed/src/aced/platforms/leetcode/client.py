@@ -23,39 +23,14 @@ class Operation:
     variables: dict[str, Any]
 
 
-def default_query_dir() -> Path:
-    """Find the existing sibling query repository."""
-    configured = os.environ.get("ACED_LEETCODE_QUERIES")
-    if configured:
-        path = Path(configured).expanduser().resolve()
-        if not path.is_dir():
-            raise LeetCodeError(f"Configured query directory does not exist: {path}")
-        return path
-
-    # client.py -> leetcode -> platforms -> aced -> src
-    # -> ACed -> probsol
-    root = Path(__file__).resolve().parents[5]
-    path = root / "leetcode-graphql-queries"
-
-    if not path.is_dir():
-        raise LeetCodeError(
-            "Could not find ../leetcode-graphql-queries.\n"
-            "Set ACED_LEETCODE_QUERIES to its absolute path."
-        )
-
-    return path
-
-
 class LeetCodeClient:
     """Small standard-library client for LeetCode's GraphQL endpoint."""
 
     def __init__(
         self,
-        query_dir: Path | None = None,
         endpoint: str = ENDPOINT,
         timeout: float = 15.0,
     ) -> None:
-        self.query_dir = query_dir or default_query_dir()
         self.endpoint = endpoint
         self.timeout = timeout
 
