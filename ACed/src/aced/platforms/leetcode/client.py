@@ -132,3 +132,30 @@ class LeetCodeClient:
             raise LeetCodeError(f"No problem details returned for {title_slug!r}")
 
         return question
+
+    def get_contest_problems(self, title_slug: str, contest_id: str) -> list[dict[str, Any]]:
+        if not title_slug or "/" in title_slug:
+            raise ValueError("Provide a valid problem title slug")
+
+        data = self.execute(
+            PANEL_QUESTION_LIST,
+            {
+                "envType": "contest",
+                "envId": contest_id,
+                "currentQuestionSlug": title_slug,
+            },
+        )
+
+        # print(contest_id, title_slug)
+        # print(data)
+        questions = data.get("panelQuestionList").get("questions")
+
+        for q in questions:
+            q_data = self.get_problem(q.get("titleSlug"))
+            if q_data:
+                q.update(q_data)
+
+        if not isinstance(questions, list):
+            raise LeetCodeError(f"No problems found for contest {contest_id!r}")
+
+        return questions

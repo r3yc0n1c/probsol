@@ -126,3 +126,42 @@ query questionContentWithEditorData($titleSlug: String!) {
 }
 """
 # {"titleSlug": "two-sum"}
+
+PANEL_QUESTION_LIST = """
+query panelQuestionList(
+  $currentQuestionSlug: String!
+  $categorySlug: String
+  $envId: String
+  $envType: String
+  $filters: QuestionListFilterInput
+) {
+  panelQuestionList(
+    currentQuestionSlug: $currentQuestionSlug
+    categorySlug: $categorySlug
+    envId: $envId
+    envType: $envType
+    filters: $filters
+  ) {
+    hasViewPermission
+    panelName
+    finishedLength
+    totalLength
+    questions {
+      difficulty
+      id
+      paidOnly
+      questionFrontendId
+      status
+      title
+      titleSlug
+      topicTags {
+        name
+        slug
+      }
+    }
+  }
+}
+"""
+# {"currentQuestionSlug": "two-sum", "filters": {}, "envId": "", "envType": "problem-list"}
+# {"envType": "", "envId": "", "currentQuestionSlug": "two-sum"}
+# {"envType": "contest", "envId": "weekly-contest-521", "currentQuestionSlug": "rearrange-array-by-removing-distinct-values"}
